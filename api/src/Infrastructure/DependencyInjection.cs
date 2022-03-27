@@ -23,21 +23,18 @@ public static class DependencyInjection
 
         services.AddScoped<IDomainEventService, DomainEventService>();
 
-        services.AddAuthentication(options =>
-        {
-            options.DefaultScheme = "i.a";
-            options.DefaultSignInScheme = "i.e";
-        }).AddIdentityCookies();
+        services.AddIdentity<ApplicationUser, IdentityRole>()
+            .AddEntityFrameworkStores<ApplicationDbContext>()
+            .AddDefaultTokenProviders();
 
-        services.AddIdentityCore<ApplicationUser>(options => 
-        { 
-            options.Stores.MaxLengthForKeys = 128;
-            // options.SignIn.RequireConfirmedAccount = true;
-        })
-        .AddDefaultTokenProviders()
-        .AddRoles<IdentityRole>()
-        .AddEntityFrameworkStores<ApplicationDbContext>();
-
+        // TODO read more in https://brokul.dev/authentication-cookie-lifetime-and-sliding-expiration
+        // services.ConfigureApplicationCookie(options =>
+        // {
+        //     options.ExpireTimeSpan = TimeSpan.FromMinutes(1);
+        //     options.Cookie.MaxAge = options.ExpireTimeSpan; // optional
+        //     options.SlidingExpiration = true;
+        // });
+        
         services.AddTransient<IDateTime, DateTimeService>();
         services.AddTransient<IIdentityService, IdentityService>();
 

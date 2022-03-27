@@ -14,15 +14,17 @@ public class IdentityService : IIdentityService
     private readonly IAuthorizationService _authorizationService;
     private readonly IUserClaimsPrincipalFactory<ApplicationUser> _userClaimsPrincipalFactory;
     private readonly UserManager<ApplicationUser> _userManager;
+    private readonly SignInManager<ApplicationUser> _signInManager;
 
     public IdentityService(
         UserManager<ApplicationUser> userManager,
         IUserClaimsPrincipalFactory<ApplicationUser> userClaimsPrincipalFactory,
-        IAuthorizationService authorizationService)
+        IAuthorizationService authorizationService, SignInManager<ApplicationUser> signInManager)
     {
         _userManager = userManager;
         _userClaimsPrincipalFactory = userClaimsPrincipalFactory;
         _authorizationService = authorizationService;
+        _signInManager = signInManager;
     }
 
     public async Task<string> GetUserNameAsync(string userId)
@@ -32,11 +34,22 @@ public class IdentityService : IIdentityService
         return user.UserName;
     }
 
+    public async Task<bool> LoginUserAsync(string userName, string password, bool isPersistent)
+    {
+        var result = await _signInManager.PasswordSignInAsync(userName, password, isPersistent, true);
+        return result.Succeeded;
+    }
+
     public async Task<(Result Result, string UserId)> CreateUserAsync(string userName, string password)
     {
         ApplicationUser user = new() {UserName = userName, Email = userName};
 
         IdentityResult? result = await _userManager.CreateAsync(user, password);
+
+        if (result.Succeeded)
+        {
+            await _signInManager.SignInAsync(user, false);
+        }
 
         return (result.ToApplicationResult(), user.Id);
     }
