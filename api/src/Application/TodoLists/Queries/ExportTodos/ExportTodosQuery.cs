@@ -17,14 +17,12 @@ public class ExportTodosQuery : IRequest<ExportTodosVm>
 public class ExportTodosQueryHandler : IRequestHandler<ExportTodosQuery, ExportTodosVm>
 {
     private readonly IApplicationDbContext _context;
-    private readonly ICsvFileBuilder _fileBuilder;
     private readonly IMapper _mapper;
 
-    public ExportTodosQueryHandler(IApplicationDbContext context, IMapper mapper, ICsvFileBuilder fileBuilder)
+    public ExportTodosQueryHandler(IApplicationDbContext context, IMapper mapper)
     {
         _context = context;
         _mapper = mapper;
-        _fileBuilder = fileBuilder;
     }
 
     public async Task<ExportTodosVm> Handle(ExportTodosQuery request, CancellationToken cancellationToken)
@@ -37,7 +35,7 @@ public class ExportTodosQueryHandler : IRequestHandler<ExportTodosQuery, ExportT
         ExportTodosVm vm = new(
             "TodoItems.csv",
             "text/csv",
-            _fileBuilder.BuildTodoItemsFile(records));
+            Array.Empty<byte>());
 
         return vm;
     }

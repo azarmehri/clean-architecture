@@ -35,7 +35,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHealthChecks("api/health");
+app.UseHealthChecks("/api/health");
 app.UseHttpsRedirection();
 if (!app.Environment.IsDevelopment())
 {
