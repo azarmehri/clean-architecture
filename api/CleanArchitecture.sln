@@ -5,13 +5,13 @@ VisualStudioVersion = 16.0.30114.105
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{22E06256-F4B5-4153-974B-3611BD311A46}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanArchitecture.Domain", "src\domain\CleanArchitecture.Domain.csproj", "{FF8FD0E2-1DFE-433D-83FD-717953B841FD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "src\domain\Domain.csproj", "{FF8FD0E2-1DFE-433D-83FD-717953B841FD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanArchitecture.Application", "src\Application\CleanArchitecture.Application.csproj", "{B9710640-E340-471E-9989-DD843078664B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "src\Application\Application.csproj", "{B9710640-E340-471E-9989-DD843078664B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanArchitecture.Infrastructure", "src\Infrastructure\CleanArchitecture.Infrastructure.csproj", "{380499D3-0DD2-4294-AE93-69F86E819F56}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "src\Infrastructure\Infrastructure.csproj", "{380499D3-0DD2-4294-AE93-69F86E819F56}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanArchitecture.Web", "src\Web\CleanArchitecture.Web.csproj", "{D3785035-84D6-41D8-9800-1AE08AF04B35}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web", "src\Web\Web.csproj", "{D3785035-84D6-41D8-9800-1AE08AF04B35}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
